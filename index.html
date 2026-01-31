@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <title>برای تو 🤍</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>برای تو 🤍</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- بارش گل و قلب -->
 <div class="flower-rain" id="flowerRain"></div>
+<div class="fireflies" id="fireflies"></div>
 
 <div class="container">
-    <div class="glass-card">
+<div class="glass-card">
 
-        <h1>دخترِ من 🤍</h1>
-        <p class="sub">یه چیزی هست که باید بهت بگم…</p>
+<h1>دخترِ من 🤍</h1>
+<p class="sub">یه چیزی هست که باید بهت بگم…</p>
 
-        <!-- اسلایدشو -->
-        <div class="card glass">
-            <div class="slideshow">
+<div class="slideshow">
                 <img src="images/1.jpg" class="slide active">
                 <img src="images/2.jpg" class="slide">
                 <img src="images/3.jpg" class="slide">
@@ -32,58 +31,28 @@
                 <img src="images/11.jpg" class="slide">
                 <img src="images/12.jpg" class="slide">
                 <img src="images/13.jpg" class="slide">
+                               <img src="images/14.jpg" class="slide">
+                               <img src="images/15.jpg" class="slide">
             </div>
-        </div>
 
-        <!-- دکمه‌ها -->
-        <div class="button-wrapper">
-            <button class="main-button" onclick="showLove(); playMusic();">
-                بزن روش 🤍
-            </button>
+<div class="button-wrapper">
 
-            <button class="main-button soft" onclick="showDeepLove(); playMusic();">
-                آروم‌تر بخون 🤍
-            </button>
-        </div>
+<button class="main-button" onclick="normalMode()">
+بزن روش 🤍
+</button>
 
-        <!-- متن -->
-        <div id="loveMessage"></div>
+<button class="main-button soft" onclick="deepMode()">
+آروم‌تر بخون 🤍
+</button>
 
-        <!-- موزیک پلیر -->
-        <!-- موزیک پلیر مخفی -->
-<audio id="bgMusic" preload="auto"></audio>
+</div>
 
+<div id="loveMessage"></div>
+<audio id="bgMusic"></audio>
 
-    </div>
+</div>
 </div>
 
 <script src="script.js"></script>
-
-<!-- کنترل موزیک -->
-<script>
-    const songs = [
-        "music/All of ME.mp3",
-        "music/I Need Your Love.mp3",
-        "music/Eric Chiryoku - Forgiveness.mp3"
-    ];
-
-    let currentSong = 0;
-    const audio = document.getElementById("bgMusic");
-
-    audio.src = songs[currentSong];
-
-    audio.addEventListener("ended", () => {
-        currentSong = (currentSong + 1) % songs.length;
-        audio.src = songs[currentSong];
-        audio.play();
-    });
-
-    function playMusic() {
-        if (audio.paused) {
-            audio.play();
-        }
-    }
-</script>
-
 </body>
 </html>

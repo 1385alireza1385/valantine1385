@@ -1,137 +1,307 @@
-/* ===============================
-   SLIDESHOW
-================================ */
-let slides = document.querySelectorAll(".slide");
-let slideIndex = 0;
+const audio = document.getElementById("bgMusic");
 
-setInterval(() => {
-    slides[slideIndex].classList.remove("active");
-    slideIndex = (slideIndex + 1) % slides.length;
-    slides[slideIndex].classList.add("active");
-}, 4000);
+const normalSongs = [
+"music/All of ME.mp3",
+"music/I Need Your Love.mp3"
+];
 
-/* ===============================
-   LOVE MESSAGE
-================================ */
-function showLove() {
-    const msg = document.getElementById("loveMessage");
+const deepSong = "music/Eric Chiryoku - Forgiveness.mp3";
 
-    msg.innerHTML = `
-    می‌دونی چرا کنارت حالم این‌همه خوبه؟<br>
-    چون وقتی با توام، لازم نیست نقش بازی کنم…<br>
-    خودمم، دقیقاً همونجوری که هستم 🤍<br><br>
+let songIndex = 0;
 
-    شیطونم، می‌خندم، آروم می‌شم،<br>
-    یه وقتایی هم لج می‌کنم 😌<br>
-    ولی تو تنها کسی هستی که<br>
-    همه‌ی اینا رو بلدی و دوست داری…<br><br>
 
-    دخترِ من،<br>
-    بودنت امن‌ترین جای دنیاست برام 🤍<br>
-    جایی که دلم همیشه می‌خواد<br>
-    برگرده و بمونه…<br><br>
+/* ===== TYPE WRITER ===== */
 
-    راستش رو بخوای،<br>
-    تو منو عوض کردی…<br>
-    نه با حرف، نه با زور،<br>
-    فقط با دوست‌داشتنت.<br><br>
+function typeWriter(element, text, speed = 30){
+element.innerHTML="";
+let i=0;
 
-    انگار وسط تاریکی<br>
-    اومدی دستمو گرفتی و گفتی:<br>
-    «نترس، من هستم» 🤍<br><br>
-
-    وقتی پیشتم،<br>
-    دنیا آروم‌تر می‌شه،<br>
-    صداها خفه‌تر،<br>
-    دل من… قرص‌تر.<br><br>
-
-    تو عزیزترینی،<br>
-    خاص‌ترینی،<br>
-    و بی‌رقیب‌ترین آدم زندگی منی.<br>
-    بودنت دلگرمیه،<br>
-    موندنت رؤیاست…<br><br>
-
-    من کنارت می‌مونم،<br>
-    با شیطنت‌هام، با ضعف‌هام،<br>
-    با عشقی که هر روز<br>
-    بیشتر و عمیق‌تر<br>
-    فقط برای تو می‌تپه ❤️
-    `;
-
-    msg.classList.add("show");
+function typing(){
+if(i<text.length){
+element.innerHTML += text.charAt(i);
+i++;
+setTimeout(typing,speed);
 }
-function showDeepLove() {
-    const msg = document.getElementById("loveMessage");
+}
 
-    msg.innerHTML = `
-    می‌خوام یه چیزی رو آروم و واقعی بهت بگم…<br><br>
-
-    تو فقط کسی نیستی که دوستش دارم،<br>
-    تو کسی هستی که باهاش<br>
-    خودِ زندگی معنی پیدا می‌کنه 🤍<br><br>
-
-    بعضی وقتا وسط شلوغی روز،<br>
-    یهو یاد خنده‌ت می‌افتم<br>
-    و بدون اینکه بفهمم چرا،<br>
-    دلم آروم می‌شه…<br><br>
-
-    تو بلدی منو،<br>
-    بلدی کی قوی‌ام،<br>
-    بلدی کی دلم می‌لرزه،<br>
-    و قشنگ‌ترین قسمت ماجرا اینه<br>
-    که بازم کنارمی…<br><br>
-
-    کنار تو بودن یعنی<br>
-    امنیت،<br>
-    یعنی شیطنت‌های بی‌دلیل،<br>
-    یعنی حرف‌هایی که فقط بین خودمونه 😌<br><br>
-
-    من عاشق اینم که با تو<br>
-    آینده رو تصور می‌کنم،<br>
-    با همه‌ی ترس‌ها و امیدهاش…<br>
-    چون می‌دونم اگه تو باشی،<br>
-    هر مسیری قابل رفتنه 🤍<br><br>
-
-    دختر من،<br>
-    تو انتخاب قلبمی،<br>
-    نه از سر عادت،<br>
-    از سر عشق…<br><br>
-
-    و اگه هزار بار دیگه هم<br>
-    فرصت انتخاب داشته باشم،<br>
-    هر بار،<br>
-    بی‌مکث،<br>
-    فقط تو ❤️
-    `;
-
-    msg.classList.add("show");
+typing();
 }
 
 
-/* ===============================
-   FLOWER & HEART RAIN
-================================ */
-const rain = document.getElementById("flowerRain");
-const icons = ["🌹","❤️","🌸"];
+/* ===== NORMAL MODE ===== */
 
-setInterval(() => {
-    const el = document.createElement("div");
-    el.className = "flower";
-    el.innerText = icons[Math.floor(Math.random() * icons.length)];
-    el.style.left = Math.random() * 100 + "vw";
-    el.style.animationDuration = 4 + Math.random() * 4 + "s";
-    el.style.fontSize = 18 + Math.random() * 14 + "px";
-    rain.appendChild(el);
+function normalMode(){
 
-    setTimeout(() => el.remove(), 8000);
-}, 350);
-/* ===============================
-   DEEP LOVE BUTTON (SAFE BIND)
-================================ */
-document.addEventListener("DOMContentLoaded", () => {
-    const deepBtn = document.getElementById("deepLoveBtn");
-    if (deepBtn) {
-        deepBtn.addEventListener("click", showDeepLove);
-    }
-});
+document.body.classList.remove("deep-mode");
 
+removeNightEffects();
+startFlowerRain();
+showLove();
+
+audio.src = normalSongs[songIndex];
+audio.play();
+
+audio.onended=()=>{
+songIndex=(songIndex+1)%normalSongs.length;
+audio.src=normalSongs[songIndex];
+audio.play();
+}
+
+}
+
+
+/* ===== DEEP MODE ===== */
+
+function deepMode(){
+
+document.body.classList.add("deep-mode");
+
+stopFlowerRain();
+createFireflies();
+createStars();
+createMist();
+createWaterReflection();
+
+showDeepLove();
+
+audio.onended=null;
+audio.src=deepSong;
+audio.play();
+
+}
+
+
+/* ===== متن طولانی مود اول ===== */
+
+function showLove(){
+
+const msg=document.getElementById("loveMessage");
+
+msg.innerHTML=`
+می‌دونی چرا کنارت حالم این‌همه خوبه؟<br>
+چون وقتی با توام، لازم نیست نقش بازی کنم…<br>
+خودمم، دقیقاً همونجوری که هستم 🤍<br><br>
+
+شیطونم، می‌خندم، آروم می‌شم،<br>
+یه وقتایی هم لج می‌کنم 😌<br>
+ولی تو تنها کسی هستی که<br>
+همه‌ی اینا رو بلدی و دوست داری…<br><br>
+
+دخترِ من،<br>
+بودنت امن‌ترین جای دنیاست برام 🤍<br>
+جایی که دلم همیشه می‌خواد<br>
+برگرده و بمونه…<br><br>
+
+راستش رو بخوای،<br>
+تو منو عوض کردی…<br>
+فقط با دوست‌داشتنت.<br><br>
+بعضی لحظه‌ها خیلی ساده‌ان…
+اما وقتی با آدم خاصی تقسیم بشن،
+می‌شن خاطره‌هایی که هیچ‌وقت پاک نمی‌شن 🤍
+
+کنار کسی بودن که لبخندتو می‌شناسه،
+یکی از قشنگ‌ترین اتفاق‌های زندگیه…
+
+گاهی فقط بودنِ یک نفر،
+کافیه تا دل آدم
+آروم‌تر از همیشه بتپه ❤️
+
+و قشنگ‌ترین قسمت ماجرا اینه که
+بعضی آدم‌ها،
+بی‌صدا وارد زندگی می‌شن
+ولی عمیق‌ترین رد رو
+روی قلب آدم می‌ذارن…
+بعضی لحظه‌ها خیلی ساده‌ان…
+اما وقتی با آدم خاصی تقسیم بشن،
+می‌شن خاطره‌هایی که هیچ‌وقت پاک نمی‌شن 🤍
+
+کنار کسی بودن که لبخندتو می‌شناسه،
+یکی از قشنگ‌ترین اتفاق‌های زندگیه…
+
+گاهی فقط بودنِ یک نفر،
+کافیه تا دل آدم
+آروم‌تر از همیشه بتپه ❤️
+
+و قشنگ‌ترین قسمت ماجرا اینه که
+بعضی آدم‌ها،
+بی‌صدا وارد زندگی می‌شن
+ولی عمیق‌ترین رد رو
+روی قلب آدم می‌ذارن…
+
+
+وقتی پیشتم دنیا آروم‌تر می‌شه ❤️
+`;
+
+msg.classList.add("show");
+}
+
+
+/* ===== متن طولانی مود شب ===== */
+
+function showDeepLove(){
+
+const msg=document.getElementById("loveMessage");
+
+const text = `
+می‌خوام یه چیزی رو آروم و واقعی بهت بگم…
+
+تو فقط کسی نیستی که دوستش دارم،
+تو کسی هستی که باهاش زندگی معنی پیدا می‌کنه 🤍
+
+بعضی وقتا وسط شلوغی روز،
+یهو یاد خنده‌ت می‌افتم
+و بدون اینکه بفهمم چرا،
+دلم آروم می‌شه…
+
+تو بلدی منو،
+بلدی کی قوی‌ام،
+بلدی کی دلم می‌لرزه،
+و قشنگ‌ترین قسمت ماجرا اینه
+که بازم کنارمی…
+
+کنار تو بودن یعنی
+امنیت،
+یعنی شیطنت‌های بی‌دلیل،
+یعنی حرف‌هایی که فقط بین خودمونه 😌
+
+من عاشق اینم که با تو
+آینده رو تصور می‌کنم،
+چون می‌دونم اگه تو باشی،
+هر مسیری قابل رفتنه 🤍
+
+دختر من،
+تو انتخاب قلبمی،
+نه از سر عادت،
+از سر عشق…
+
+و اگه هزار بار دیگه هم
+فرصت انتخاب داشته باشم،
+هر بار فقط تو ❤️
+شب‌ها عجیب‌تر می‌شن
+وقتی دل آدم
+به یاد کسی گرم باشه…
+
+بعضی حس‌ها
+با صدا گفته نمی‌شن،
+فقط توی سکوت شب
+آروم توی قلب جا می‌گیرن 🤍
+
+گاهی عشق،
+نه در حرف‌ها،
+بلکه در آرامشی که یک نفر
+به زندگی میاره،
+معنی پیدا می‌کنه…
+
+و بعضی آدم‌ها
+مثل نور ماه هستن،
+شاید دور،
+اما روشنایی‌شون
+همیشه حس می‌شه…
+
+`;
+
+msg.classList.add("show");
+typeWriter(msg,text);
+
+}
+
+
+/* ===== SLIDESHOW ===== */
+
+let slides=document.querySelectorAll(".slide");
+let slideIndex=0;
+
+setInterval(()=>{
+slides[slideIndex].classList.remove("active");
+slideIndex=(slideIndex+1)%slides.length;
+slides[slideIndex].classList.add("active");
+},4000);
+
+
+/* ===== FLOWER RAIN ===== */
+
+const rain=document.getElementById("flowerRain");
+const icons=["🌹","❤️","🌸"];
+let rainInterval;
+
+function startFlowerRain(){
+
+rainInterval=setInterval(()=>{
+const el=document.createElement("div");
+el.className="flower";
+el.innerText=icons[Math.floor(Math.random()*icons.length)];
+el.style.left=Math.random()*100+"vw";
+el.style.animationDuration=4+Math.random()*4+"s";
+rain.appendChild(el);
+setTimeout(()=>el.remove(),8000);
+},350);
+
+}
+
+function stopFlowerRain(){
+clearInterval(rainInterval);
+}
+
+
+/* ===== FIREFLIES ===== */
+
+let fireflyInterval;
+
+function createFireflies(){
+fireflyInterval=setInterval(()=>{
+const f=document.createElement("div");
+f.className="firefly";
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*100+"vh";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),6000);
+},500);
+}
+
+
+/* ===== STARS ===== */
+
+function createStars(){
+for(let i=0;i<60;i++){
+const star=document.createElement("div");
+star.className="star";
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+document.body.appendChild(star);
+}
+}
+
+
+/* ===== MIST ===== */
+
+function createMist(){
+const mist=document.createElement("div");
+mist.className="mist";
+document.body.appendChild(mist);
+}
+
+
+/* ===== WATER ===== */
+
+function createWaterReflection(){
+const water=document.createElement("div");
+water.className="water-reflection";
+document.body.appendChild(water);
+}
+
+
+/* ===== REMOVE NIGHT EFFECTS ===== */
+
+function removeNightEffects(){
+clearInterval(fireflyInterval);
+
+document.querySelectorAll(".firefly").forEach(e=>e.remove());
+document.querySelectorAll(".star").forEach(e=>e.remove());
+document.querySelectorAll(".mist").forEach(e=>e.remove());
+document.querySelectorAll(".water-reflection").forEach(e=>e.remove());
+}
+
+
+/* ===== START ===== */
+
+startFlowerRain();

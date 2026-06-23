@@ -5,7 +5,7 @@ const normalSongs = [
 "music/3.mp3"
 ];
 
-const deepSong = "music/Eric Chiryoku - Forgiveness.mp3";
+const deepSong = "music/3.mp3";
 
 let songIndex = 0;
 
@@ -105,8 +105,7 @@ function showDeepLove(){
 const msg=document.getElementById("loveMessage");
 
 const text = `
-می‌خوام امشب یه حرفی رو بهت بزنم که مدت‌هاست توی دلمه... 🤍<br><br>
-
+می‌خوام امشب یه حرفی رو بهت بزنم که مدت‌هاست توی دلمه... 🤍
 شاید خودتم ندونی،
 ولی خیلی بیشتر از چیزی که فکر می‌کنی
 توی فکر منی...
